@@ -1,26 +1,26 @@
 version: "3"
 services:
-  users_ms:
+  users-ms:
     build: .
     command: bash -c "sleep 40 && rails db:create && rails db:migrate && rails s -p 8083 -b 0.0.0.0"
     ports:
       - "8083:8083"
     depends_on:
-      - users_db
-      - ldap_server
+      - users-db
+      - ldap-server
     environment:
       LDAP_HOST: 192.168.99.100
       LDAP_PORT: 389
       LDAP_ADMIN_PASSWORD: admin
 
-  users_db:
+  users-db:
     image: postgres
     ports:
     - "5432:5432"
     environment:
      POSTGRES_PASSWORD: password
 
-  ldap_server:
+  ldap-server:
     image: osixia/openldap
     environment:
       COMPOSE_HTTP_TIMEOUT: 200
@@ -45,4 +45,4 @@ services:
     ports:
       - "8086:80"
     links:
-      - ldap_server
+      - ldap-server
