@@ -14,11 +14,15 @@ services:
       LDAP_ADMIN_PASSWORD: admin
 
   users-db:
-    image: postgres
+    image: mysql
     ports:
-    - "5432:5432"
+      - "3306:3306"
     environment:
-     POSTGRES_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_USER: arquisoft
+      MYSQL_PASSWORD: 123
+      MYSQL_DATABASE: users
+      MYSQL_HOST: users-db
 
   ldap-server:
     image: osixia/openldap
