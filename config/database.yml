@@ -1,9 +1,12 @@
 default: &default
-  encoding: unicode
+  encoding: utf8
   # adapter: sqlite3
-  adapter: postgresql
-  username: postgres
-  password: password
+  # adapter: postgresql
+  adapter: mysql2
+  # username: %= ENV["USERS_DB_USERNAME"] %>
+  # password: %= ENV["USERS_DB_PASSWORD"] %>
+  username: <%= ENV.fetch("USERS_DB_USERNAME") %>
+  password: <%= ENV.fetch("USERS_DB_PASSWORD") %>
   host: <%= ENV.fetch("DB_HOST") %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000

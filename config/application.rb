@@ -17,6 +17,13 @@ require "action_controller/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+unless Rails.env.production?
+  Dotenv::Railtie.load
+  USERS_DB_USERNAME = ENV["USERS_DB_USERNAME"]
+  USERS_DB_PASSWORD = ENV["USERS_DB_PASSWORD"]
+end
+
+
 module UsersMs
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
